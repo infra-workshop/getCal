@@ -8,4 +8,5 @@
 
 ## How to use
 `$ python getCal.py`
+
 `$ wordcount.sh`
