@@ -11,7 +11,6 @@ ArchLinuxで一からGUI環境を構築しよう。
 プロキシ登場までの歴史
 Windows小技、WSLに関するLT
 できる！iptables
-できる！iptables
 気軽に!vagrantとVirtualBox
 昼のNginx実践入門
 [勉強会発表ための勉強会]俺の画面共有を手伝ってくれ！
@@ -25,7 +24,6 @@ dozono 30分クッキング -Webサービス編その①-
 非エンジニアでもわかるNWの基礎
 Let’s Let’s Encrypt(急遽追加)
 俺がAzureに登録するのを見届けてくれ
-俺がAzureに登録するのを見届けてくれ
 基本的なCPUアーキテクチャ
 こわくない WSL 入門
 サーバ管理技術 IPMI
@@ -36,8 +34,3 @@ Let’s Let’s Encrypt
 Windowsの小ネタLT
 [再]ESXiを触ってみる+何か
 FreeDNSを使ってみよう
-ゼロから始めるDBチューニング
-プリセールスのインフラエンジニアって何？
-【study-infraで流行!?】RDOを用いたOpenStack Mitakaの構築
-【初心者歓迎】ネットワークの基本の「き」
-【入門】この2つのIPアドレスって同じネットワークにいるの？
