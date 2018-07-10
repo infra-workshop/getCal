@@ -19,13 +19,15 @@ def silentremove(filename):
         if e.errno != errno.ENOENT:  # errno.ENOENT = no such file or directory
             raise  # re-raise exception if a different error occurred
 
+
 # 設定した年月のカレンダーを取ってくる
 for target_month in target_months:
     target_url_base = 'https://wp.infra-workshop.tech/events/'
     target_url = target_url_base + target_month + '/'
     save_file = 'scraped/' + target_month + '.txt'
 
-    sleep(1)  # add wait time
+    # サーバの負荷を低減するために1秒待ち時間を入れる
+    sleep(1)
 
     if os.path.exists(save_file):
         silentremove(save_file)
@@ -34,7 +36,7 @@ for target_month in target_months:
     soup = BeautifulSoup(r.text, 'lxml')
     text_prev = ""  # for duplicated line check
 
-    for td in soup.select('table tbody tr td '):  # get date from calender
+    for td in soup.select('table tbody tr td '):  # get data from calender
         target_date = td.get("data-day")
         if target_date[:-3] == target_month:  # skip if prev or next month
             if len(td.select("div.tribe-events-viewmore"))==0:
@@ -49,11 +51,12 @@ for target_month in target_months:
                                     f.write(text+'\n')
                             text_prev = text
             else:
-                # if the day has more than 3 events, only first 3 events are shown in calender.
-                # to fix it, search "day event page" instead of calender
+                # 月のカレンダーの場合、イベントが3件を超える日は4件目以降が取得できない
+                # この場合は日毎のイベントページに飛び、イベントタイトルを取得する
                 target_url_day = target_url_base + target_date + '/'
 
-                sleep(1)  # add wait time
+                # サーバの負荷を低減するために1秒待ち時間を入れる
+                sleep(1)
 
                 r_day = requests.get(target_url_day)
                 soup_day = BeautifulSoup(r_day.text, 'lxml')
@@ -62,8 +65,6 @@ for target_month in target_months:
                     text = re.sub("\s", "", title.get_text())  # trim all blanks
                     with open(save_file, "a", encoding="utf-8") as f:
                         f.write(text + '\n')
-
-
 
     print('got ' + target_month)
 
